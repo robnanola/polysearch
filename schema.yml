@@ -1,0 +1,607 @@
+openapi: 3.0.3
+info:
+  title: polysearch
+  version: 1.0.0
+  description: Search provider service areas by coordinates.
+paths:
+  /api/v1/providers/:
+    get:
+      operationId: providers_list
+      description: Viewset for viewing and managing providers.
+      tags:
+      - providers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Provider'
+          description: ''
+    post:
+      operationId: providers_create
+      description: Viewset for viewing and managing providers.
+      tags:
+      - providers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Provider'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Provider'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Provider'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Provider'
+          description: ''
+  /api/v1/providers/{id}/:
+    get:
+      operationId: providers_retrieve
+      description: Viewset for viewing and managing providers.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this provider.
+        required: true
+      tags:
+      - providers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Provider'
+          description: ''
+    put:
+      operationId: providers_update
+      description: Viewset for viewing and managing providers.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this provider.
+        required: true
+      tags:
+      - providers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Provider'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Provider'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Provider'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Provider'
+          description: ''
+    patch:
+      operationId: providers_partial_update
+      description: Viewset for viewing and managing providers.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this provider.
+        required: true
+      tags:
+      - providers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProvider'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProvider'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProvider'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Provider'
+          description: ''
+    delete:
+      operationId: providers_destroy
+      description: Viewset for viewing and managing providers.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this provider.
+        required: true
+      tags:
+      - providers
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/v1/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/service-area/:
+    get:
+      operationId: service_area_list
+      description: Viewset for viewing and managing service areas.
+      parameters:
+      - in: query
+        name: coords
+        schema:
+          type: string
+        description: 'Search service area by coordinates. Format: lat/lng (55.09/9.12)'
+      tags:
+      - service-area
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceAreaList'
+          description: ''
+    post:
+      operationId: service_area_create
+      description: Viewset for viewing and managing service areas.
+      tags:
+      - service-area
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceArea'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ServiceArea'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ServiceArea'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceArea'
+          description: ''
+  /api/v1/service-area/{id}/:
+    get:
+      operationId: service_area_retrieve
+      description: Viewset for viewing and managing service areas.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service area.
+        required: true
+      tags:
+      - service-area
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceArea'
+          description: ''
+    put:
+      operationId: service_area_update
+      description: Viewset for viewing and managing service areas.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service area.
+        required: true
+      tags:
+      - service-area
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceArea'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ServiceArea'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ServiceArea'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceArea'
+          description: ''
+    patch:
+      operationId: service_area_partial_update
+      description: Viewset for viewing and managing service areas.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service area.
+        required: true
+      tags:
+      - service-area
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceArea'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceArea'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceArea'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceArea'
+          description: ''
+    delete:
+      operationId: service_area_destroy
+      description: Viewset for viewing and managing service areas.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service area.
+        required: true
+      tags:
+      - service-area
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    PatchedProvider:
+      type: object
+      description: Serializer for service provider model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone_number:
+          type: string
+          pattern: ^\+?1?\d{9,15}$
+          maxLength: 17
+        language:
+          type: string
+          maxLength: 50
+        currency:
+          type: string
+          maxLength: 25
+    PatchedServiceArea:
+      type: object
+      description: Serializer for ServiceArea model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        zone:
+          type: string
+        name:
+          type: string
+          maxLength: 50
+        price:
+          type: string
+          format: decimal
+          pattern: ^\d{0,8}(\.\d{0,2})?$
+        provider:
+          type: integer
+    Provider:
+      type: object
+      description: Serializer for service provider model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone_number:
+          type: string
+          pattern: ^\+?1?\d{9,15}$
+          maxLength: 17
+        language:
+          type: string
+          maxLength: 50
+        currency:
+          type: string
+          maxLength: 25
+      required:
+      - currency
+      - email
+      - id
+      - language
+      - name
+    ServiceArea:
+      type: object
+      description: Serializer for ServiceArea model
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        zone:
+          type: string
+        name:
+          type: string
+          maxLength: 50
+        price:
+          type: string
+          format: decimal
+          pattern: ^\d{0,8}(\.\d{0,2})?$
+        provider:
+          type: integer
+      required:
+      - id
+      - name
+      - price
+      - provider
+      - zone
+    ServiceAreaList:
+      type: object
+      description: |-
+        Read/List serializer for service area
+
+        We just need the return the provider's name rather than just an id
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        zone:
+          type: string
+        provider:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        price:
+          type: string
+          format: decimal
+          pattern: ^\d{0,8}(\.\d{0,2})?$
+      required:
+      - id
+      - name
+      - price
+      - provider
+      - zone
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: Session
